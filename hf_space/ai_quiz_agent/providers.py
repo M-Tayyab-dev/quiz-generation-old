@@ -8,8 +8,28 @@ from functools import lru_cache
 
 def parse_json(text):
     text = (text or "").strip()
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+    if "```json" in text:
+        text = text.split("```json", 1)[1].split("```", 1)[0].strip()
+    elif "```" in text:
+        text = text.split("```", 1)[1].split("```", 1)[0].strip()
+
+    try:
+        data = json.loads(text)
+        if isinstance(data, dict):
+            return data
+    except Exception:
+        pass
+
+    first_brace = text.find("{")
+    last_brace = text.rfind("}")
+    if first_brace != -1 and last_brace > first_brace:
+        try:
+            data = json.loads(text[first_brace:last_brace + 1])
+            if isinstance(data, dict):
+                return data
+        except Exception:
+            pass
+
     data = json.loads(text)
     if not isinstance(data, dict):
         raise ValueError("Model must return a JSON object.")
