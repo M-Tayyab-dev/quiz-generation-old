@@ -26,7 +26,7 @@ class HuggingFaceProvider:
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_id, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(
             self.model_id, torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-            device_map="auto", attn_implementation="sdpa", trust_remote_code=True,
+            device_map="auto", attn_implementation="eager", trust_remote_code=True,
         )
         adapter = adapter or os.getenv("HF_ADAPTER")
         if adapter:

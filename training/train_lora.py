@@ -50,7 +50,7 @@ def main():
         return {"input_ids":all_ids, "attention_mask":[1]*len(all_ids), "labels":labels}
     train_data, valid_data = [encode(r) for r in train], [encode(r) for r in validation]
     model = AutoModelForCausalLM.from_pretrained(args.model, torch_dtype=torch.float16,
-                                                attn_implementation="sdpa", trust_remote_code=True).to("cuda")
+                                                attn_implementation="eager", trust_remote_code=True).to("cuda")
     model.config.use_cache = False
     is_phi = "phi" in args.model.lower()
     target_mods = ["qkv_proj", "o_proj"] if is_phi else ["q_proj", "v_proj"]
