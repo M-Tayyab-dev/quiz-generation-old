@@ -20,6 +20,14 @@ class HuggingFaceProvider:
     def __init__(self, model_id=None, adapter=None):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
+        try:
+            from transformers.cache_utils import DynamicCache
+            if not hasattr(DynamicCache, "seen_tokens"):
+                DynamicCache.seen_tokens = property(lambda self: self.get_seq_length())
+            if not hasattr(DynamicCache, "get_max_length"):
+                DynamicCache.get_max_length = lambda self: getattr(self, "max_cache_len", None)
+        except Exception:
+            pass
         self.torch = torch
         self.lock = threading.Lock()
         self.model_id = model_id or os.getenv("HF_MODEL", "microsoft/Phi-3.5-mini-instruct")
