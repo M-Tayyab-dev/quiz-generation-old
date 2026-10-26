@@ -22,6 +22,8 @@ class HuggingFaceProvider:
         from transformers import AutoModelForCausalLM, AutoTokenizer
         try:
             from transformers.cache_utils import DynamicCache
+            if not hasattr(DynamicCache, "get_usable_length"):
+                DynamicCache.get_usable_length = lambda self, n=0, l=0: self.get_seq_length(l)
             if not hasattr(DynamicCache, "seen_tokens"):
                 DynamicCache.seen_tokens = property(lambda self: self.get_seq_length())
             if not hasattr(DynamicCache, "get_max_length"):
