@@ -1,0 +1,33 @@
+sequenceDiagram
+    actor Student
+    participant App as Existing Flutter app
+    participant API as Local FastAPI
+    participant Model as CPU Qwen model
+    participant DB as SQLite
+    Student->>App: Choose document
+    App->>API: POST /documents (file)
+    alt Scanned PDF
+        API-->>App: Unsupported scanned PDF error
+    else Selectable PDF / Word / TXT
+        API->>API: Extract text
+    end
+    API->>DB: Save source and review requirement
+    API-->>App: document_id, text, page information
+    Student->>App: Correct and confirm text
+    App->>API: POST /documents/review (document_id, text)
+    API->>DB: Save new reviewed document
+    API-->>App: New document_id
+    App->>API: POST /quizzes (document_id, count, difficulty)
+    loop One batch, at most one retry
+        API->>Model: Numbered source sentences and compact batch instructions
+        Model-->>API: Questions, answers, alternatives and source indexes
+        API->>API: Attach original quotes and validate answers
+    end
+    API->>DB: Save quiz and answer key
+    API-->>App: Questions and options (no answers)
+    Student->>App: Select answers and submit
+    App->>API: POST /quizzes/id/submit (answers)
+    API->>DB: Load answer key and save first result
+    API-->>App: Score, grade, review and recommendations
+    App->>API: GET /history
+    API-->>App: Completed results

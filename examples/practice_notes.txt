@@ -1,0 +1,1 @@
+A practice shop lists an item at 1600 rupees. It offers a discount of 25 percent of the listed price. Percentage means per hundred. The discount is calculated by multiplying the listed price by the percentage and dividing by 100. Here the discount is 400 rupees, and the buyer pays 1200 rupees. This is an authored arithmetic exercise, not a past examination question.

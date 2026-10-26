@@ -1,0 +1,5 @@
+flowchart LR
+    F[GovtQuest Flutter UI] -->|HTTP and local development token| A[FastAPI :8000]
+    A --> X[PDF / Word / TXT extraction]
+    A -->|Reviewed text only| M[llama.cpp :8081 / Qwen CPU]
+    A --> D[(Local SQLite)]

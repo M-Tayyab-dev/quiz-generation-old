@@ -1,0 +1,19 @@
+flowchart TD
+    A[Open AI Quiz inside GovtQuest] --> B[Choose PDF, DOCX or TXT]
+    B --> C[Read the full uploaded document]
+    C --> D[Read notes through FastAPI]
+    D --> E{Selectable text?}
+    E -- Yes --> F[Extract text]
+    E -- No --> G[Reject scan and request typed notes]
+    F --> H[Edit and confirm text in Flutter]
+    G --> B
+    H --> I[Choose count and difficulty]
+    I --> J[Generate MCQs from reviewed passages]
+    J --> K{Valid options, answer and source quote?}
+    K -- Retry within limit --> J
+    K -- Failed --> L[Show error and retry with richer notes]
+    K -- Valid --> M[Store answer key in backend]
+    M --> N[Answer questions in Flutter]
+    N --> O[Submit to deterministic scoring]
+    O --> P[Score, explanations and source quotes]
+    P --> Q[History or fresh practice]

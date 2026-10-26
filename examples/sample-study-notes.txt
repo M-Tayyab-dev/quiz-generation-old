@@ -1,0 +1,10 @@
+This authored handout is for testing document upload, text extraction and quiz generation. Generate three easy questions first. Every answer must be supported by the notes below. This is not an official examination paper.
+
+Water cycle
+Evaporation changes liquid water into water vapour. Condensation changes water vapour into liquid droplets. Clouds contain tiny water droplets or ice crystals. Precipitation is water falling from clouds as rain, snow or hail. Collection occurs when water gathers in rivers, lakes and oceans. The Sun supplies energy that drives evaporation in the water cycle.
+
+Computer memory
+The CPU executes program instructions. RAM stores data that a running program is using. RAM is volatile, so its contents are normally lost when power is removed. An SSD stores files even when power is off. A keyboard is an input device. A monitor is an output device. A byte contains eight bits.
+
+Percentage practice
+A shop lists a notebook at 1600 rupees. The shop offers a discount of 25 percent of the listed price. The discount is 400 rupees. The buyer pays 1200 rupees after the discount. A class has 40 learners. Ten learners are absent, which is 25 percent of the class. Thirty learners are present, which is 75 percent of the class.

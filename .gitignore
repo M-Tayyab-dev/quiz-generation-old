@@ -1,0 +1,26 @@
+# Virtual environment & local configs
+.venv/
+.env
+**/.env
+.local/
+
+# Python cache & temporary files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+artifacts/
+
+# Database & Archives
+*.sqlite3
+quiz-output.json
+*.zip
+quiz-project*.zip
+hf-space-deployment.zip
+backups/
+handwritten/
+colab-current.png
+
+# Flutter App (tracked in separate repo: GovtQuestAI)
+/flutter project/
+.dart_tool/
+build/
